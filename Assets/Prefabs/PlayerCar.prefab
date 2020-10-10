@@ -148,10 +148,12 @@ MonoBehaviour:
     thirdGearMaxSpeed: 200
     fourthGearMaxSpeed: 250
     fifthGearMaxSpeed: 300
+  breakingConstant: 0.005
   acceleration: 0.1
   isAccelerating: 0
+  hasStartedMovement: 0
   speedReductionConstant: 0.05
-  rotationAmountOnTurn: 0.2
+  rotationAmountOnTurn: 0.1
   maxCarTurnRadius: 0
   minCarTurnRadius: 0
 --- !u!82 &551951958
@@ -282,7 +284,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.79
   m_Pitch: 1
   Loop: 0
   Mute: 0

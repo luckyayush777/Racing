@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float carSpeed = 10.0f;
     private Rigidbody carBody;
+    static int i = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        throwAwayMovement();
+        MovementToWayPoints();
     }
 
     void AddToWayPoints()
@@ -34,34 +35,17 @@ public class EnemyMovement : MonoBehaviour
             wayPoints.Add(g.transform);
         }
     }
-
-    void CalculateDirectionToMove()
+    void MovementToWayPoints()
     {
-        Vector3 currentPosition = carBody.transform.position;
-        //1  - traverse through the list, the difference between the
-        //     current position and the next waypoint, the vector
-        //     difference is the direction to move and 
-        //2  - if the difference in 
-        //     positions is really less(the car reached the waypoint) then
-        //     go to 1
-        for(int i = 0; i < wayPoints.Count; i++)
+        //start moving to the waypoint
+        //if reached waypoint
+        //move to the next waypoint
+        Vector3 target = wayPoints[i].position;
+        Vector3 dirToMove = (target - carBody.transform.position);
+        if (wayPoints[i].position.z - carBody.transform.position.z <= 0.2f && i < wayPoints.Count - 1)
         {
-            Vector3 directionToMove = wayPoints[i].position - currentPosition;
-            MoveCar(directionToMove);
+            i++;
         }
-    }
-
-    void MoveCar(Vector3 directionToMove)
-    {
-        carBody.transform.Translate(directionToMove * carSpeed * Time.deltaTime);
-    }
-
-    void throwAwayMovement()
-    {
-        Vector3 currentPosition = carBody.transform.position;
-        Vector3 wayPointToMove = wayPoints[0].position;
-        Vector3 dirToMove = wayPointToMove - currentPosition;
-        Debug.DrawRay(currentPosition, dirToMove);
-        transform.Translate(dirToMove * carSpeed * Time.deltaTime);
+        carBody.transform.Translate(dirToMove.normalized * Time.deltaTime * carSpeed, Space.World);
     }
 }
