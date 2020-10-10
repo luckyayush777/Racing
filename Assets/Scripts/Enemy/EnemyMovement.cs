@@ -18,12 +18,12 @@ public class EnemyMovement : MonoBehaviour
             Debug.Log("Couldnt attach rigidBody");
         }
         AddToWayPoints();
+        
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-       
         throwAwayMovement();
     }
 
@@ -58,17 +58,10 @@ public class EnemyMovement : MonoBehaviour
 
     void throwAwayMovement()
     {
-        int i = 0;
-        while (wayPoints[i] != null && i < wayPoints.Count)
-        {
-            Vector3 dirToMove;
-            dirToMove = wayPoints[i].position - carBody.transform.position;
-            carBody.transform.Translate(dirToMove * carSpeed * Time.deltaTime);
-            if(carBody.transform.position.z - wayPoints[i].position.z <= 0.02f)
-            {
-                i++;
-            }
-        }
-
+        Vector3 currentPosition = carBody.transform.position;
+        Vector3 wayPointToMove = wayPoints[0].position;
+        Vector3 dirToMove = wayPointToMove - currentPosition;
+        Debug.DrawRay(currentPosition, dirToMove);
+        transform.Translate(dirToMove * carSpeed * Time.deltaTime);
     }
 }

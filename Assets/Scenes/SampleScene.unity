@@ -1884,6 +1884,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668247979}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1889143175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889143176}
+  m_Layer: 0
+  m_Name: NavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1889143176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889143175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1913072501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,11 +2174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5090087977056609871, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -659.4
+      value: -635.8
       objectReference: {fileID: 0}
     - target: {fileID: 5090087977056609871, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7069834
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5090087977056609871, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2160,7 +2190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5090087977056609871, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7072302
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5090087977056609871, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: m_RootOrder
@@ -2168,7 +2198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5090087977056609871, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.98
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 5090087977056609871, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2184,7 +2214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6285496605330232706, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
       propertyPath: carSpeed
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4db3ef7f1602c93489a4938dfe874792, type: 3}
