@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bdce0e03129cec24a97328b9ea77209d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - carStartRevLoop: {instanceID: 0}
+  - carEngineStart: {instanceID: 0}
+  - gearChange: {fileID: 8300000, guid: 1bf5e9a33f5b46942b1048f9b836bbcd, type: 3}
+  - engineLoad: {fileID: 8300000, guid: c40da7240f401ad44bd5b782441abcc4, type: 3}
+  - engineUnload: {fileID: 8300000, guid: 01882b4b272edbb458db2a619c7ee2a0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
