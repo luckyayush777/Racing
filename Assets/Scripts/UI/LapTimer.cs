@@ -8,6 +8,8 @@ public class LapTimer : MonoBehaviour
     public float timeSinceGameStart;
     public TextMeshProUGUI TimeSinceGameStart;
     
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,11 @@ public class LapTimer : MonoBehaviour
     void Update()
     {
         timeSinceGameStart += Time.deltaTime;
-        TimeSinceGameStart.text = " " + timeSinceGameStart;
+
+        string minutes = Mathf.Floor(timeSinceGameStart / 60).ToString("00");
+        string seconds = (timeSinceGameStart % 60).ToString("00");
+        TimeSinceGameStart.text = minutes + ":" + seconds;
     }
+
+
 }

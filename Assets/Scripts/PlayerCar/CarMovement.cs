@@ -65,17 +65,22 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if(speed > 0)
         speed -= speedReductionConstant;
         if (speed < 0)
             speed = 0;
+        Movement();
+        ShowGearInfo();
+    }
+
+    void Movement()
+    {
         if (Input.GetKeyDown(KeyCode.W))
         {
             hasStartedMovement = true;
             accelerationTimer = 0;
         }
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             speed -= speed * breakingConstant;
             isAccelerating = false;
@@ -102,7 +107,7 @@ public class CarMovement : MonoBehaviour
             speed -= acceleration * deAccelerationTimer;
             carBody.transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             carBody.transform.Rotate(-rotation);
         }
@@ -110,7 +115,6 @@ public class CarMovement : MonoBehaviour
         {
             carBody.transform.Rotate(rotation);
         }
-        ShowGearInfo();
     }
 
     private void ShowGearInfo()
