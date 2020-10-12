@@ -9,10 +9,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float carSpeed = 10.0f;
     [SerializeField]
-    private int maxSpeedAmount;
+    private int maxSpeedAmount = 0;
     private Rigidbody carBody;
     [SerializeField]
-    private float accelerationAmount;
+    private float accelerationAmount = 0;
 
     static int i = 0;
     // Start is called before the first frame update
@@ -49,6 +49,10 @@ public class EnemyMovement : MonoBehaviour
             i++;
         }
         carBody.transform.Translate(dirToMove.normalized * Time.deltaTime * carSpeed, Space.World);
+        if( i == wayPoints.Count - 1)
+        {
+            carSpeed = 0;
+        }
         if(carSpeed <= maxSpeedAmount)
         {
             Accelerate();
@@ -57,6 +61,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Accelerate()
     {
-        carBody.AddForce(Vector3.up * accelerationAmount * Time.deltaTime);
+        carSpeed += accelerationAmount * Time.deltaTime;
     }
 }
