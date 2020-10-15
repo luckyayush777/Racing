@@ -20,7 +20,7 @@ public class LapTimer : MonoBehaviour
     void Update()
     {
         timeSinceGameStart += Time.deltaTime;
-
+        //float seconds_float = timeSinceGameStart % 60;
         string minutes = Mathf.Floor(timeSinceGameStart / 60).ToString("00");
         string seconds = (timeSinceGameStart % 60).ToString("00");
         TimeSinceGameStart.text = minutes + ":" + seconds;
