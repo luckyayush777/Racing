@@ -28,9 +28,10 @@ public class CarMovement : MonoBehaviour
 
 
 
-    public GameObject nitrosEffect;
+    public GameObject[] nitrosEffect = new GameObject[2];
     [SerializeField]
     private int nitrosConstant = 0;
+    private bool nitrosStatus = false;
     public float speed;
     public float maxSpeed;
     public int currentGear;
@@ -61,6 +62,7 @@ public class CarMovement : MonoBehaviour
     void Start()
     {
         carBody = GetComponent<Rigidbody>();
+        //nitrosEffect = GameObject.FindGameObjectsWithTag("ExhaustParent");
         rotation = new Vector3(0.0f, 0.0f, rotationAmountOnTurn);
     }
 
@@ -121,11 +123,21 @@ public class CarMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift))
         {
             acceleration *= nitrosConstant;
-            ActivateNitros();
+            if (!nitrosStatus)
+            {
+                nitrosEffect[0].SetActive(true);
+                nitrosEffect[1].SetActive(true);
+                nitrosStatus = true;
+            }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            DeactivateNitros();
+            if (nitrosStatus)
+            {
+                nitrosEffect[0].SetActive(false);
+                nitrosEffect[1].SetActive(false);
+                nitrosStatus = false;
+            }
         }
     }
 
@@ -178,20 +190,8 @@ public class CarMovement : MonoBehaviour
 
     }
     
-    private void ActivateNitros()
-    {
-        GameObject[] nitrosPositions = GameObject.FindGameObjectsWithTag("ExhaustParent");
-        foreach(var spawnPoint in nitrosPositions)
-        {
-            var nitros = Instantiate(nitrosEffect, spawnPoint.transform.position, 
-                Quaternion.Euler(-180.0f , 0.0f , 0.0f));
-            nitros.transform.parent = spawnPoint.transform;
-        }
-    }
+    
 
-    private void DeactivateNitros()
-    {
-        Destroy(nitrosEffect);
-    }
+   
 
 }
