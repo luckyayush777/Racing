@@ -122,7 +122,7 @@ public class CarMovement : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            acceleration *= nitrosConstant;
+            acceleration = acceleration * nitrosConstant;
             if (!nitrosStatus)
             {
                 nitrosEffect[0].SetActive(true);

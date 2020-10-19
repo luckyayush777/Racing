@@ -6,6 +6,10 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
     List<Transform> wayPoints = new List<Transform>();
+    private Vector3 target;
+    private Vector3 dirToMove;
+
+
     [SerializeField]
     private float carSpeed = 10.0f;
     [SerializeField]
@@ -15,6 +19,14 @@ public class EnemyMovement : MonoBehaviour
     private float accelerationAmount = 0;
 
     static int i = 0;
+
+    void AddToWayPoints()
+    {
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("wayPoints"))
+        {
+            wayPoints.Add(g.transform);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -33,26 +45,25 @@ public class EnemyMovement : MonoBehaviour
         MovementToWayPoints();
     }
 
-    void AddToWayPoints()
-    {
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("wayPoints"))
-        {
-            wayPoints.Add(g.transform);
-        }
-    }
+ 
     void MovementToWayPoints()
     { 
-        Vector3 target = wayPoints[i].position;
-        Vector3 dirToMove = (target - carBody.transform.position);
-        if (wayPoints[i].position.z - carBody.transform.position.z <= 0.2f && i < wayPoints.Count - 1)
+        if( i != wayPoints.Count)
+        target = wayPoints[i].position;
+        else if (i == wayPoints.Count)
+        {
+            carSpeed = 0;
+            target = Vector3.zero;
+        }
+        if (i != wayPoints.Count)
+            dirToMove = (target - carBody.transform.position);
+        else
+            dirToMove = Vector3.zero;
+        if (i < wayPoints.Count && wayPoints[i].position.z - carBody.transform.position.z <= 0.2f  )
         {
             i++;
         }
         carBody.transform.Translate(dirToMove.normalized * Time.deltaTime * carSpeed, Space.World);
-        if( i == wayPoints.Count - 1)
-        {
-            carSpeed = 0;
-        }
         if(carSpeed <= maxSpeedAmount)
         {
             Accelerate();

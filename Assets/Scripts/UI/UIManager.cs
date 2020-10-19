@@ -9,20 +9,22 @@ public class UIManager : MonoBehaviour
     private Canvas beforeStartCanvas = null;
     [SerializeField]
     private Canvas gameProgressCanvas = null;
+    [SerializeField]
+    private Canvas EndgameCanvas = null;
     public GameObject countDownReference;
-    private bool countDownEnded = false;
+    public bool countDownEnded = false;
     
     void InitialisationSetup()
     {
         beforeStartCanvas.enabled = true;
         gameProgressCanvas.enabled = false;
+        EndgameCanvas.enabled = false;
         
     }
     // Start is called before the first frame update
     void Start()
     {
-       
-        InitialisationSetup();
+       InitialisationSetup();
     }
 
     // Update is called once per frame
@@ -31,9 +33,21 @@ public class UIManager : MonoBehaviour
         countDownEnded = countDownReference.GetComponent<StartCountDown>().CountDownEnded;
         if (countDownEnded)
         {
-            //if(beforeStartCanvas.enabled == true && gameProgressCanvas.enabled == false)
+            if(beforeStartCanvas.enabled == true && gameProgressCanvas.enabled == false)
             gameProgressCanvas.enabled = true;
             beforeStartCanvas.enabled = false;
+        }
+        if(EndpointBehaviour.hasPlayerWon)
+        {
+            gameProgressCanvas.enabled = false;
+            beforeStartCanvas.enabled = false;
+            EndgameCanvas.enabled = true;
+        }
+        else if(!EndpointBehaviour.hasPlayerWon && EndpointBehaviour.raceEnded)
+        {
+            gameProgressCanvas.enabled = false ;
+            beforeStartCanvas.enabled = false;
+            EndgameCanvas.enabled = true;
         }
     }
 
